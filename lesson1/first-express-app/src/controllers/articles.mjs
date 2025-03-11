@@ -1,7 +1,7 @@
 // articles
 export const getArticlesHandler = (req, res) => {
   res.end('Get Articles Route')
-} 
+}
 
 export const postArticlesHandler = (req, res) => {
   res.end('Post Articles Route')
