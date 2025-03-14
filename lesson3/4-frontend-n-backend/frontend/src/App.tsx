@@ -3,37 +3,32 @@ import { useEffect, useState } from 'react'
 interface Person {
   name: string
   age: number
-  skills?: string[]
+  skills: string[]
 }
 
-function App() {
+const App = () => {
   const [person, setPerson] = useState<Person | null>(null)
 
   useEffect(() => {
     fetch('http://localhost:3000')
-      .then(res => res.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         console.log(data)
         setPerson(data)
       })
-      .catch(err => console.log(err.message))
+      .catch((error) => {
+        console.error('Error fetching data:', error)
+      })
   }, [])
 
   return (
     <div>
       {person && (
-        <>
-          <h1>Frontend</h1>
-          <h2>{person.name}</h2>
-          <h3>{person.age}</h3>
-          {person.skills && (
-            <ul>
-              {person.skills.map((skill, index) => (
-                <li key={index}>{skill}</li>
-              ))}
-            </ul>
-          )}
-        </>
+        <div>
+          <h1>{person.name}</h1>
+          <h2>{person.age}</h2>
+          <h3>{person.skills.join(', ')}</h3>
+        </div>
       )}
     </div>
   )
