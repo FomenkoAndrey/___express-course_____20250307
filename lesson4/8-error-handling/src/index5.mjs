@@ -4,7 +4,7 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res, next) => {
-  Promise.reject(new Error("Can't get the data"))
+  Promise.reject(new Error('Can\'t get the data'))
 })
 
 app.use((err, req, res, next) => {
@@ -15,6 +15,7 @@ app.use((err, req, res, next) => {
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Неперехоплене відхилення Promise')
   console.error('Причина:', reason.message)
+  // extra logic
 })
 
 app.listen(port, () => {

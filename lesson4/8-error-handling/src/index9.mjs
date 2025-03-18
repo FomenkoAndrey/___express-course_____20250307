@@ -5,16 +5,28 @@ import { NotFoundError } from './NotFoundError.mjs'
 const app = express()
 const port = 3000
 
-app.get('/', (req, res, next) => {
-  Promise.reject(new Error("Can't get the data")).catch((err) => next(err))
+app.get('/', async (req, res, next) => {
+  try {
+    await Promise.reject(new Error('Can\'t get the data'))
+  } catch (err) {
+    next(err)
+  }
 })
 
-app.get('/json', (req, res, next) => {
-  Promise.reject(new ValidationError('Custom validation message')).catch((err) => next(err))
+app.get('/json', async (req, res, next) => {
+  try {
+    await Promise.reject(new ValidationError('Custom validation message'))
+  } catch (err) {
+    next(err)
+  }
 })
 
-app.get('/not-found', (req, res, next) => {
-  Promise.reject(new NotFoundError('Resource not found')).catch((err) => next(err))
+app.get('/not-found', async (req, res, next) => {
+  try {
+    await Promise.reject(new NotFoundError('Resource not found'))
+  } catch (err) {
+    next(err)
+  }
 })
 
 app.use((err, req, res, next) => {

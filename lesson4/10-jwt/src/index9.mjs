@@ -22,8 +22,8 @@ const token = jwt.sign(payload, secretKey, options)
 logColored('Token:', 'red', token)
 
 try {
-  const decodedPayload = jwt.verify(token, secretKey, verifyOptions)
-  // const decodedPayload = jwt.decode(token)
+  // const decodedPayload = jwt.verify(token, secretKey, verifyOptions)
+  const decodedPayload = jwt.decode(token)
   logColored('Decoded payload:', 'blue', decodedPayload)
 } catch (err) {
   log(`${err.name}: ${err.message}`, 'bgRedBright')

@@ -17,7 +17,7 @@ const options = {
 
 const verifyOptions = {
   audience: /localhost:3000/,
-  issuer: 'MyApp'
+  issuer: 'NotMyApp'
 }
 
 const token = jwt.sign(payload, secretKey, options)

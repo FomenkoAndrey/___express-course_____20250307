@@ -4,7 +4,9 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res, next) => {
-  Promise.reject(new Error("Can't get the data")).catch((err) => next(err))
+  Promise
+    .reject(new Error('Can\'t get the data'))
+    .catch((err) => next(err))
 })
 
 app.use((err, req, res, next) => {

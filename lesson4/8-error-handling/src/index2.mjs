@@ -12,10 +12,10 @@ app.get('/', (req, res, next) => {
 
 //        err=>req, req=>res, res=>next
 //   4 => err, req, res, next
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   console.log('ERR:', err)
-  console.log('REQ:', req)
-  console.log('RES:', res)
+  // console.log('REQ:', req)
+  // console.log('RES:', res)
   console.error(`Error: ${err.message}`)
   res.status(500).json({ message: err.message })
 })
