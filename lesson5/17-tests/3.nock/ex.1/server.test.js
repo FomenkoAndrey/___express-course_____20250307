@@ -13,7 +13,7 @@ describe('Test GET /external-post', () => {
     nock('https://jsonplaceholder.typicode.com').get('/posts/1').reply(200, mockApiResponse)
 
     const response = await request(app).get('/external-post')
-    // console.log(response.body)
+    console.log(response.body)
     expect(response.statusCode).toBe(200)
     expect(response.body).toEqual(mockApiResponse)
   })

@@ -1,8 +1,8 @@
 import express from 'express'
-import session from 'express-session'
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import flash from 'connect-flash'
+import session from 'express-session'
 
 const app = express()
 
@@ -29,14 +29,7 @@ passport.use(
 )
 
 app.use(express.urlencoded({ extended: true }))
-
-app.use(
-  session({
-    secret: 'secret_key',
-    resave: false,
-    saveUninitialized: false
-  })
-)
+app.use(session(sessionOptions))
 
 app.use(flash())
 app.use(passport.initialize())
@@ -54,8 +47,7 @@ passport.deserializeUser((id, done) => {
   }
 })
 
-app.post(
-  '/login',
+app.post('/login',
   passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true
@@ -96,6 +88,17 @@ app.get('/protected', (req, res) => {
     res.redirect('/login')
   }
 })
+
+// ^ Варіант видалення сесії
+// app.get('/logout', (req, res) => {
+//   req.session.destroy((err) => {
+//     if (err) {
+//       console.error('Помилка при знищенні сесії:', err)
+//     } else {
+//       res.redirect('/')
+//     }
+//   })
+// })
 
 app.listen(3000, () => {
   console.log('The server has started on port 3000')

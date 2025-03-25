@@ -23,7 +23,6 @@ app.use((req, res, next) => {
 })
 
 app.get('/form', (req, res) => {
-
   console.log(`Form has been sent to the client with CSRF token: ${res.locals.csrfToken}`)
   res.send(`
     <form action="/process" method="POST">
@@ -40,7 +39,6 @@ app.post('/process', (req, res) => {
 
   console.log('Secret from cookies:', secret)
   console.log('CSRF token from body:', token)
-
 
   if (tokens.verify(secret, token)) {
     console.log('Data has been processed successfully')

@@ -5,7 +5,7 @@ const app = express()
 app.use((req, res, next) => {
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'self'; base-uri 'self'; font-src 'self' https: data:; form-action 'self'; frame-ancestors 'self';"
+    'default-src \'self\'; base-uri \'self\'; font-src \'self\' https: data:; form-action \'self\'; frame-ancestors \'self\';'
   )
   res.setHeader('Cross-Origin-Opener-Policy', 'same-origin')
   res.setHeader('Cross-Origin-Resource-Policy', 'same-origin')
@@ -27,5 +27,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(3000, () => {
-  console.log('The server is running on http://localhost:3000')
+  console.log('Сервер запущено на http://localhost:3000')
 })

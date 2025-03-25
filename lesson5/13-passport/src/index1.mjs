@@ -52,7 +52,7 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
 
 app.get('/protected', (req, res) => {
   if (req.isAuthenticated()) {
-    res.send('Це захищена сторінка')
+    res.send('Ми успішно зайшли на захищену сторінку')
   } else {
     res.status(401).send('Недостатньо прав для доступу')
   }
